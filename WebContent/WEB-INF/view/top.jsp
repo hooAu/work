@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Git Project</title>
 </head>
 	<style>
 		.menu {
@@ -21,14 +21,19 @@
 				<small >${hello }</small>
 				<hr/>
 				<div class="menu">
-					<c:if test="${sessionScope.logon == null }">
-						<a href="${pageContext.request.contextPath }/join" class="link">회원가입</a>
-						<a href="${pageContext.request.contextPath }/login" class="link">로그인</a>
-					
-					</c:if>
-						<span style="text-align:right">${sessionScope.logon}</span>
-						 &nbsp;
+					<c:choose>
+						<c:when test="${sessionScope.logon == null }">
+							<a href="${pageContext.request.contextPath }/join" class="link">회원가입</a>
+							<a href="${pageContext.request.contextPath }/login" class="link">로그인</a>
+						</c:when>
+						<c:otherwise>
+							<span style="text-align:right">${sessionScope.logon}</span>
+							 &nbsp;
 						 <a href="${pageContext.request.contextPath }/chat" class="link">채팅방개설</a>		
+						</c:otherwise>
+					</c:choose>
+					
+						
 						
 				</div>
 				<hr/>

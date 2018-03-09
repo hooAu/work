@@ -4,7 +4,7 @@
 <%@ include file="top.jsp" %>
 	
 
-</body>
+
 <style>
 		.join{
 			width:200px;
@@ -14,7 +14,7 @@
 			
 		}
 	</style>
-</html>
+
 	
 	<div style="width:200px; margin-top:70px" >
 		<h4>- 로그인 -</h4>
@@ -36,3 +36,7 @@
 		</form>
 	
 	</div>
+
+</body>
+</html>	
+	
