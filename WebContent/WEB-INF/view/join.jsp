@@ -19,7 +19,8 @@
 				<h4>- 회원가입 -</h4>
 				<small>아래 항목을 작성해주세요.</small> 
 				<br/>
-				<small style="color:red">${error }</small>
+				<small style="color:red">${error.id }</small><br/>
+				<small style="color:red">${error.mail }</small>
 				
 				<form action="${pageContext.request.contextPath }/join" method="post">
 					<div  class="joinFont">ID</div>

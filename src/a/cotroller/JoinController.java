@@ -29,20 +29,23 @@ public class JoinController {
 	
 	@RequestMapping(path="/join", method=RequestMethod.POST)
 	public String joinPostHandle(@RequestParam Map map,HttpSession session, Model model) {
-		Map rst = new HashMap<>();
+		boolean rst = false;
 		try {
 			rst = join.register(map);
+			if(rst) {
+				session.setAttribute("logon", map.get("id"));
+				return "redirect:/index";
+			}
+			throw new Exception();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		
-		if(!rst.containsKey("id") && !rst.containsKey("mail")) {
-			session.setAttribute("logon", map.get("id"));
-			return "redirect:/index";
-		} else {
-			model.addAttribute(rst);
+			Map error =	join.errorChk(map);
+			model.addAttribute("error",error);
+			
 			return "join";
-		}
+		} 
+
+		
 	}
 	
 	@RequestMapping(path="/mailChk",produces="application/json;charset=utf-8")

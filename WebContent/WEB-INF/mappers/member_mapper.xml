@@ -11,6 +11,6 @@
 		select * from member where id=#{id}
 	</select>	
 	<select id="checkMail" resultType="hashmap">
-		select * from member where mail=#{mail}
+		select * from member where email=#{mail}
 	</select>	
 </mapper>
