@@ -13,4 +13,7 @@
 	<select id="checkMail" resultType="hashmap">
 		select * from member where email=#{mail}
 	</select>	
-</mapper>
+	
+	<select id="loginByIdOrMail" resultType="hashmap">
+		select * from member where (id=#{idmail} or email=#{idmail}) and password=#{pass}
+	</select></mapper>
