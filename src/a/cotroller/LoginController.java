@@ -2,6 +2,8 @@ package a.cotroller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +27,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(path="login", method=RequestMethod.POST)
-	public String loginPostHandle(@RequestParam Map map,Model model) {
+	public String loginPostHandle(@RequestParam Map map,Model model,HttpSession session) {
 		boolean rst = login.loginBy(map);
+		if(rst) {
+			session.setAttribute("logon", (String)map.get("id"));
+		}
 		
 		return "index";
 	}

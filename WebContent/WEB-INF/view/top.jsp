@@ -23,10 +23,12 @@
 				<div class="menu">
 					<c:if test="${sessionScope.logon == null }">
 						<a href="${pageContext.request.contextPath }/join" class="link">회원가입</a>
+						<a href="${pageContext.request.contextPath }/login" class="link">로그인</a>
+					
 					</c:if>
 						<span style="text-align:right">${sessionScope.logon}</span>
-						<a href="${pageContext.request.contextPath }/login" class="link">로그인</a>
-						채팅방 개설
+						 &nbsp;
+						 <a href="${pageContext.request.contextPath }/chat" class="link">채팅방개설</a>		
 						
 				</div>
 				<hr/>
