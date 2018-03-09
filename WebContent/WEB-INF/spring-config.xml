@@ -62,6 +62,8 @@
 			<tx:method name="*"/>
 		</tx:attributes>
 	</tx:advice>
-	
+	<aop:config>
+		<aop:advisor advice-ref="tx" pointcut="within(a.service.*)"/>
+	</aop:config>
 	
 </beans>
