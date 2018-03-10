@@ -9,8 +9,8 @@ public class ChatService {
 	@Autowired
 	SqlSessionTemplate template;
 	
-	public String checkAuth(String id) {
-		String rst = template.selectOne("member.checkAuth", id);
-		return rst;
+	public int checkAuth(String id) {
+		
+		return template.selectOne("member.checkAuth", id);
 	}
 }

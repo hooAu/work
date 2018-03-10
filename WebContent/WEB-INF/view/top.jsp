@@ -8,6 +8,8 @@
 	<style>
 		.menu {
 			text-align:left;
+			background-color:#F2F2F2;
+			height:25px;
 		}
 		.link {
 			text-decoration:none;
@@ -18,25 +20,30 @@
 	<div align="center">
 		<div style="width:800px">
 			<h4>Git을 이용한 프로젝트 관리</h4>	
-				<small >${hello }</small>
-				<hr/>
+			
+				
 				<div class="menu">
-					<c:choose>
-						<c:when test="${sessionScope.logon == null }">
-							<a href="${pageContext.request.contextPath }/join" class="link">회원가입</a>
-							<a href="${pageContext.request.contextPath }/login" class="link">로그인</a>
-						</c:when>
-						<c:otherwise>
-							<span style="text-align:right">${sessionScope.logon}</span>
-							 &nbsp;
-						 <a href="${pageContext.request.contextPath }/chat" class="link">채팅방개설</a>		
-						</c:otherwise>
-					</c:choose>
-					
+					<div style="float:left; margin-left:15px; margin-top:4px;">
+						<c:choose>
+							<c:when test="${sessionScope.logon == null }">
+								<a href="${pageContext.request.contextPath }/join" class="link"><small><b>회원가입</b></small></a>
+								 &nbsp;<a href="${pageContext.request.contextPath }/login" class="link"><small><b>로그인</b></small></a>
+							</c:when>
+							<c:otherwise>
+							 <a href="${pageContext.request.contextPath }/index" class="link"><small><b>홈</b></small></a>		
+							</c:otherwise>
+						</c:choose>
+					</div>
+					<div style="float:right; margin-right:15px;margin-top:4px;">
+						<c:if test="${sessionScope.logon != null }">
+							<small><b>로그아웃</b></small>&nbsp;  
+							<small><b>${sessionScope.logon}</b></small>
+						</c:if>
+					</div>
 						
 						
 				</div>
-				<hr/>
+		
 				
 		
 	

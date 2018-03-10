@@ -14,7 +14,7 @@
 		select * from member where email=#{mail}
 	</select>	
 	
-	<select id="checkAuth" resultType="String">
+	<select id="checkAuth" resultType="java.lang.Integer">
 		select lv from member where id=#{id}
 	</select>
 	

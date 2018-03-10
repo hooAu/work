@@ -19,25 +19,28 @@ public class ChatController {
 	ChatService chat;
 	
 	@RequestMapping(path="/chat", method=RequestMethod.GET)
-	public String chatGetHandle() {
+	public String chatGetHandle(HttpSession session) {
+		String id = (String)session.getAttribute("logon");
+		System.out.println(id);
+		int rst = chat.checkAuth(id);
+		System.out.println(rst);
 		
-		
-		return "chat";
+		if(rst == 0) {
+			return "auth";
+		} else {
+			return "chat";
+		}
 	}
+		
+	
+		
 	
 	
 	@RequestMapping(path="/chat",method=RequestMethod.POST )
 	public String chatPostHandle(@RequestParam Map map,HttpSession session) {
-		String id = (String)session.getAttribute("logon");
-		System.out.println(id);
-		String rst = chat.checkAuth(id);
-		System.out.println(rst);
-		if(rst.equals("0")) {
-			return "redirect:/index";
-		} else {
-			return "redirect:/chat";
-		}
 		
-		
+		return "";
 	}
+		
+		
 }
