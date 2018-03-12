@@ -49,9 +49,9 @@ public class JoinController {
 			
 			return "join";
 		} 
+	}
 
 		
-	}
 	
 	@RequestMapping(path="/mailChk",produces="application/json;charset=utf-8")
 	@ResponseBody

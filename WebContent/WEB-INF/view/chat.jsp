@@ -19,18 +19,18 @@
 				<h4>-채팅방 개설-</h4>
 				
 				<form action="${pageContext.request.contextPath }/chat" method="post">
-					<div  class="chatFont">방 제목</div>
+					<div  class="chatFont"><small><b>방 제목</b></small></div>
 					<div>
 						<input type="text" name="id" class="chat"/>
 					</div><br/>
 			
-					<div class="charFont">PASS</div>
+					<div class="chatFont"><small><b>PASS</b></small></div>
 					<div>
 						<input type="password" name="pass" class="chat"/>
 					</div><br/>
 							
 					
-					<button type="submit" class="chat">방 개설</button>
+					<button type="button" class="chat">방 개설</button>
 						
 				</form>
 			</div>
@@ -39,3 +39,4 @@
 
 </body>
 </html>
+
