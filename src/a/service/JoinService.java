@@ -41,7 +41,23 @@ public class JoinService {
 		return error;
 	}
 		
-			
+	public boolean mailChk(String mail) {
+		Map map = template.selectOne("member.checkMail", mail);
+		boolean rst = false;
+		if(map == null)
+			rst = true;
+		
+		return rst;
+	}
+
+	public boolean idChk(String id) {
+		Map map = template.selectOne("member.checkId", id);
+		boolean rst = false;
+		if(map == null) 
+			rst = true;
+		
+		return rst;
+	}
 		 
 			
 		

@@ -15,23 +15,30 @@ import a.service.LoginService;
 
 @Controller
 @RequestMapping
-public class LoginController {
+public class LoginAndLogoutController {
 	@Autowired
 	LoginService login;
 	
-	@RequestMapping(path="login", method=RequestMethod.GET)
+	@RequestMapping(path="/login", method=RequestMethod.GET)
 	public String loginGetHandle() {
 		
 		
 		return "login";
 	}
 	
-	@RequestMapping(path="login", method=RequestMethod.POST)
+	@RequestMapping(path="/login", method=RequestMethod.POST)
 	public String loginPostHandle(@RequestParam Map map,Model model,HttpSession session) {
 		boolean rst = login.loginBy(map);
 		if(rst) {
 			session.setAttribute("logon", (String)map.get("id"));
 		}
+		
+		return "index";
+	}
+	
+	@RequestMapping("/logout")
+	public String logoutHandle(HttpSession session) {
+		session.removeAttribute("logon");
 		
 		return "index";
 	}

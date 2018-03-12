@@ -36,7 +36,7 @@
 					</div>
 					<div style="float:right; margin-right:15px;margin-top:4px;">
 						<c:if test="${sessionScope.logon != null }">
-							<small><b>로그아웃</b></small>&nbsp;  
+							<a href="${pageContext.request.contextPath }/logout" class="link"><small><b>로그아웃</b></small></a>&nbsp;   
 							<small><b>${sessionScope.logon}</b></small>
 						</c:if>
 					</div>

@@ -2,6 +2,7 @@ package a.cotroller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import a.service.JoinService;
 
 @Controller
@@ -20,6 +23,8 @@ import a.service.JoinService;
 public class JoinController {
 	@Autowired
 	JoinService join;
+	@Autowired
+	Gson gson;
 	
 	@RequestMapping(path="/join", method=RequestMethod.GET)
 	public String joinHandle() {
@@ -50,10 +55,38 @@ public class JoinController {
 	
 	@RequestMapping(path="/mailChk",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String joinAjax(@RequestParam String mail) {
+	public String mailAjax(@RequestParam String mail) {
+		Map map = new HashMap<>();
 		
+		String regex = ("[a-zA-Z]+(\\.)?[a-zA-Z]+@[a-z]+\\.[a-zA-Z]+");
+		if(mail.matches(regex)) {
+			map.put("pattern",true);
+		} else {
+			map.put("pattern", false);
+		}
 		
-		return "";
+		boolean rst = join.mailChk(mail);
+			map.put("chk", rst);
+		
+		return gson.toJson(map);
+	}
+	
+	@RequestMapping(path="/idChk",produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String idAjax(@RequestParam String id) {
+		Map map = new HashMap<>();
+		
+		String regex = "[a-zA-Z]+";
+		if(id.matches(regex)) {
+			map.put("p", true);
+		} else {
+			map.put("p", false);
+		}
+		
+		boolean rst = join.idChk(id);
+			map.put("chk", rst);
+		
+		return gson.toJson(map);
 	}
 	
 		

@@ -49,9 +49,6 @@
 	</bean>
 	
 	
-	
-	
-	
 	<!-- txManager 등록 -->
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<constructor-arg name="dataSource" ref="ds"/>
@@ -65,5 +62,12 @@
 	<aop:config>
 		<aop:advisor advice-ref="tx" pointcut="within(a.service.*)"/>
 	</aop:config>
+	
+	<!-- gson 등록 -->
+	<bean id="gsonBuilder" class="com.google.gson.GsonBuilder">
+		<property name="dateFormat" value="yyyy/MM/dd HH:mm"/>
+	</bean>
+	<bean id="gson" factory-bean="gsonBuilder" factory-method="create"/>
+	
 	
 </beans>

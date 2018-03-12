@@ -22,5 +22,6 @@
 		select * from member where id=#{id} and password=#{pass}
 	</select>
 	
+
 	
 	</mapper>
