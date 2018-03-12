@@ -14,7 +14,7 @@
 						<h4>${sessionScope.logon }님 환영합니다. 인증절차 후, 웹 채팅을 이용해주세요.</h4>
 						
 						<a href="${pageContext.request.contextPath }/chat"><button type="button" 
-							style="width:100px;height:30px">채팅방 개설하기</button></a>
+							style="width:130px;height:30px">채팅방 개설하기</button></a>
 								
 					</c:otherwise>
 				</c:choose>

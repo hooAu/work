@@ -20,12 +20,12 @@
 		<h4>- 로그인 -</h4>
 		
 		<form action="${pageContext.request.contextPath }/login" method="post">
-			<div  class="joinFont">ID</div>
+			<div  class="joinFont"><small><b>ID</b></small></div>
 			<div>
 				<input type="text" name="id" class="join"/>
 			</div><br/>
 	
-			<div class="joinFont">PASS</div>
+			<div class="joinFont"><small><b>PASS</b></small></div>
 			<div>
 				<input type="password" name="pass" class="join"/>
 			</div><br/>

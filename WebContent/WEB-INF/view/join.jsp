@@ -7,14 +7,14 @@
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<style>
 		.join{
-			width:200px;
+			width:230px;
 		}
 		.joinFont{
 			text-align:left;
 			
 		}
 	</style>
-			<div style="width:200px; margin-top:70px" >
+			<div style="width:230px; margin-top:70px" >
 				
 				<h4>- 회원가입 -</h4>
 				<small>아래 항목을 작성해주세요.</small> 
@@ -28,7 +28,7 @@
 						<input type="text" name="id"  id="id"  class="join"/>
 					</div><br/>
 					<c:if test="${id != null }">
-						<div  class="joinFont">ID</div>
+						<div  class="joinFont"><small><b>ID</b></small></div>
 						<div>
 							<input type="text" name="id" class="join"/>
 						</div><br/>
