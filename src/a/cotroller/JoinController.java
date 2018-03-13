@@ -1,6 +1,7 @@
 package a.cotroller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.google.gson.Gson;
 
@@ -25,6 +28,9 @@ public class JoinController {
 	JoinService join;
 	@Autowired
 	Gson gson;
+	@Autowired
+	Map<String,List<WebSocketSession>> ws;
+	
 	
 	@RequestMapping(path="/join", method=RequestMethod.GET)
 	public String joinHandle() {
@@ -39,6 +45,20 @@ public class JoinController {
 			rst = join.register(map);
 			if(rst) {
 				session.setAttribute("logon", map.get("id"));
+				// 웹소켓으로 다른탭에 알리는 코드
+				String sid = session.getId();			
+				List<WebSocketSession> list = ws.get(sid);
+				Map data = new HashMap<>();
+					data.put("login", "다른 탭에서 로그인이 되었습니다.\n새로고침 해주세요.");
+				if(list != null) {
+					for(WebSocketSession ws : list) {
+						try {
+							ws.sendMessage(new TextMessage(gson.toJson(data)));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
 				return "redirect:/index";
 			}
 			throw new Exception();
@@ -50,6 +70,9 @@ public class JoinController {
 			return "join";
 		} 
 	}
+				
+				
+				
 
 		
 	
@@ -58,7 +81,7 @@ public class JoinController {
 	public String mailAjax(@RequestParam String mail) {
 		Map map = new HashMap<>();
 		
-		String regex = ("[a-zA-Z]+(\\.)?[a-zA-Z]+@[a-z]+\\.[a-zA-Z]+");
+		String regex = ("[a-zA-Z]+[0-9]*(\\.)?[a-zA-Z]*@[a-z]+\\.[a-zA-Z]+");
 		if(mail.matches(regex)) {
 			map.put("pattern",true);
 		} else {

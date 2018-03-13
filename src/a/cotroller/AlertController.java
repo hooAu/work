@@ -1,14 +1,10 @@
 package a.cotroller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import javax.annotation.PostConstruct;
-
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
@@ -36,10 +32,11 @@ public class AlertController extends TextWebSocketHandler{
 		
 		
 		String key = (String) map.get("HTTP.SESSION.ID");	// HttpSession을 접근해서 정보를 얻어와야 한다.
-		
+		System.out.println(key);
 		if(!ws.containsKey(key))
 			ws.put(key, new ArrayList<>());
 		ws.get(key).add(session);
+		
 		
 		for(String s : ws.keySet()) {
 			System.out.println(s + " / " + ws.get(s) + " / " + ws.get(s).size());
