@@ -19,6 +19,14 @@
 					</c:otherwise>
 				</c:choose>
 			
+				<div id="info">
+			
+				</div>
+				<script>
+					
+				
+				</script>
+			
 			</div>
 		</div>
 	</div>
