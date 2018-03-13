@@ -35,6 +35,7 @@ public class LoginAndLogoutController {
 			
 			// 로그인 하거나 로그아웃 할 경우, 같은 브라우저로 접근한 사용자에게 알림 띄우기.
 			// webSocket을 어떤식으로 접근할 것인지?
+			// 웹소켓 컨트롤러에 등록된 map을 bean으로 등록하고, wired 받아서 사용하자.
 						
 		}
 		

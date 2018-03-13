@@ -35,9 +35,19 @@
 	<websocket:handlers>
 		<websocket:mapping handler="wsController" path="/handle"/>
 		<websocket:handshake-interceptors>
-			<bean class=""></bean>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+	
+	<!-- webSocket 관리용 Map 등록 -->
+	<bean id="sessions" class="java.util.HashMap">
+		<constructor-arg>
+			<map>
+				<entry key="String" value="java.util.ArrayList"/>
+			</map>
+		</constructor-arg>
+	</bean>
+	
 	
 	
 	<!-- 서비스 전체 스캔 -->
