@@ -28,7 +28,7 @@ public class WsController extends TextWebSocketHandler{
 	Gson gson;
 	
 	Set<WebSocketSession> wsSessions;
-	Map<String,String> data;
+	Map<String,Object> data;
 	@PostConstruct	// init-method 역할의 어노테이션 (bean을 component-scan으로 자동등록하므로 이방법을 쓴다.)
 	public void init() {
 		wsSessions = new LinkedHashSet<>();
@@ -46,12 +46,8 @@ public class WsController extends TextWebSocketHandler{
 		
 		
 		wsSessions.add(session);
-		if(data.containsKey("cnt")) {
-			data.put("cnt", String.valueOf(Integer.valueOf(data.get("cnt"))+1));
-		} else {
-			data.put("cnt", String.valueOf(wsSessions.size()));
-		}
-		
+	
+		data.put("cnt", wsSessions.size());
 		data.put("info", session.getRemoteAddress().getAddress().getHostAddress() + "가 접속했습니다.");
 		
 		for(WebSocketSession ws : wsSessions) {
@@ -59,10 +55,7 @@ public class WsController extends TextWebSocketHandler{
 			session.sendMessage(new TextMessage(gson.toJson(data)));
 		}
 		
-		
-		
-		
-		
+	
 	}
 	
 	@Override // 클라이언트 측에서 메시지 들어올 때
@@ -70,12 +63,14 @@ public class WsController extends TextWebSocketHandler{
 		System.out.println("handleTextMessage.. " + session + " / " + message);
 	}
 	
+	
+	
 	@Override // 클라이언트측과 연결이 해제 될 때
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		System.out.println("afterConnectionClosed.. " + session);
 		
 		wsSessions.remove(session);
-		data.put("cnt", String.valueOf(Integer.valueOf(data.get("cnt"))-1));
+		data.put("cnt", wsSessions.size());
 		data.put("info", session.getRemoteAddress().getAddress().getHostAddress() + "가 접속을 종료했습니다.");
 		for(WebSocketSession ws : wsSessions) {
 			session.sendMessage(new TextMessage("close"));
