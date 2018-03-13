@@ -40,14 +40,8 @@
 	</websocket:handlers>
 	
 	<!-- webSocket 관리용 Map 등록 -->
-	<bean id="sessions" class="java.util.HashMap">
-		<constructor-arg>
-			<map>
-				<entry key="String" value="java.util.ArrayList"/>
-			</map>
-		</constructor-arg>
-	</bean>
-	
+	<bean id="data" class="a.data.WebSession" />
+	<bean id="ws" factory-bean="data" factory-method="createMap" />
 	
 	
 	<!-- 서비스 전체 스캔 -->

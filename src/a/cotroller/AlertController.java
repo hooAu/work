@@ -9,6 +9,7 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
@@ -16,15 +17,11 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 @Controller("alertController")
 public class AlertController extends TextWebSocketHandler{
-	
-	Map<String,List<WebSocketSession>> sessions;
+	@Autowired
+	Map<String,List<WebSocketSession>> ws;
 
 	
-	@PostConstruct
-	public void init() {
-		sessions = new HashMap<>();
-		
-	}
+	
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -40,12 +37,12 @@ public class AlertController extends TextWebSocketHandler{
 		
 		String key = (String) map.get("HTTP.SESSION.ID");	// HttpSession을 접근해서 정보를 얻어와야 한다.
 		
-		if(!sessions.containsKey(key))
-			sessions.put(key, new ArrayList<>());
-		sessions.get(key).add(session);
+		if(!ws.containsKey(key))
+			ws.put(key, new ArrayList<>());
+		ws.get(key).add(session);
 		
-		for(String s : sessions.keySet()) {
-			System.out.println(s + " / " + sessions.get(s) + " / " + sessions.get(s).size());
+		for(String s : ws.keySet()) {
+			System.out.println(s + " / " + ws.get(s) + " / " + ws.get(s).size());
 		}
 		
 	}
@@ -55,11 +52,11 @@ public class AlertController extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		String key = (String)session.getAttributes().get("HTTP.SESSION.ID");
-		System.out.println(sessions + " / " + sessions.get(key));
-		sessions.get(key).remove(session);
+		System.out.println(ws + " / " + ws.get(key));
+		ws.get(key).remove(session);
 		
-		if(sessions.get(key).isEmpty()) {
-			sessions.remove(key);
+		if(ws.get(key).isEmpty()) {
+			ws.remove(key);
 		}
 		
 	}
