@@ -34,11 +34,22 @@
 	-->
 	<websocket:handlers>
 		<websocket:mapping handler="wsController" path="/handle"/>
+		<websocket:handshake-interceptors>
+			<bean class=""></bean>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	
 	
 	<!-- 서비스 전체 스캔 -->
 	<context:component-scan base-package="a.service" />
+	
+	<!-- websocket 등록 -->
+	<websocket:handlers>
+		<websocket:mapping handler="alertController" path="/alert"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 	
 	<!-- datasource 등록 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="ds">

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.socket.WebSocketSession;
 
 import a.service.LoginService;
 
@@ -31,6 +32,10 @@ public class LoginAndLogoutController {
 		boolean rst = login.loginBy(map);
 		if(rst) {
 			session.setAttribute("logon", (String)map.get("id"));
+			
+			// 로그인 하거나 로그아웃 할 경우, 같은 브라우저로 접근한 사용자에게 알림 띄우기.
+			// webSocket을 어떤식으로 접근할 것인지?
+						
 		}
 		
 		return "index";
