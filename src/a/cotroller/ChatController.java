@@ -32,10 +32,6 @@ public class ChatController {
 		}
 	}
 		
-	
-		
-	
-	
 	@RequestMapping(path="/chat",method=RequestMethod.POST )
 	public String chatPostHandle(@RequestParam Map map,HttpSession session) {
 		

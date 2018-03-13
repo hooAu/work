@@ -7,7 +7,9 @@
 
 			<div style="width:200px; margin-top:70px" >
 				<h4>인증이 필요합니다.</h4>
-
+				<form action="${pageContext.request.contextPath }/auth" method="post">
+					<button type="submit">인증번호 받기</button>
+				</form>
 			
 			</div>
 		</div>
