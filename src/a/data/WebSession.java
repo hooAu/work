@@ -12,7 +12,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 public class WebSession {
 	
-	public static Map<String,List<WebSocketSession>> createMap() {
+	public Map<String,List<WebSocketSession>> createMap() {
 		return new HashMap<>();
 	}
 

@@ -5,14 +5,7 @@
 	
 	
 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 			<div style="width:500x; margin-top:70px" >
 				<c:choose>
@@ -29,13 +22,10 @@
 				</c:choose>
 			
 
-					<div class="alert alert-info">
-						<small><b>현재 접속자 : </b><span id="cnt"></span></small><br/>
-						<strong><small><b>서버알림</b></small></strong><span id="info">-</span>
-					</div>
+					
 					
 				<script>
-					var ws = new WebSocket("ws://${pageContext.request.serverName}/alert");
+					var ws = new WebSocket("ws://${pageContext.request.serverName}/logon");
 					// 새로고침한다거나 하면 연결이 끊기면서 새로운 websocket이 생성된다.
 					// 192.168.10.66 대신, ${pageContext.request.serverName} 을 적어도 같은 효과.
 					
@@ -49,9 +39,12 @@
 						// JSON.parse(resp.data)를 이용해서 메시지를 처리하면된다.
 						console.log(resp);
 						var obj = JSON.parse(resp.data);
-						$("#cnt").html(obj.cnt);
-						$("#info").html(obj.info);
-						window.alert(obj.login);
+						var out = "";
+						if(obj.content == "req") {
+							out += "친구신청을 하였습니다.";
+						} 
+						var msg = obj.from+"님이 " + out;
+						window.alert(msg);
 					
 					}
 					

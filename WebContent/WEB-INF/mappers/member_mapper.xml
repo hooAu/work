@@ -22,6 +22,10 @@
 		select * from member where id=#{id} and password=#{pass}
 	</select>
 	
+	<select id="selectAll" resultType="hashmap">
+		select * from member 
+	</select>
+	
 
 	
 	</mapper>

@@ -30,14 +30,15 @@
 								 &nbsp;<a href="${pageContext.request.contextPath }/login" class="link"><small><b>로그인</b></small></a>
 							</c:when>
 							<c:otherwise>
-							 <a href="${pageContext.request.contextPath }/index" class="link"><small><b>홈</b></small></a>		
+							 <a href="${pageContext.request.contextPath }/index" class="link"><small><b>홈</b></small></a> 
+							  &nbsp;<a href="${pageContext.request.contextPath }/follow" class="link"><small><b>친구추가</b></small></a>		
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div style="float:right; margin-right:15px;margin-top:4px;">
 						<c:if test="${sessionScope.logon != null }">
 							<a href="${pageContext.request.contextPath }/logout" class="link"><small><b>로그아웃</b></small></a>&nbsp;   
-							<small><b>${sessionScope.logon}</b></small>
+							<a href="${pageContext.request.contextPath }/flist" class="link"><small><b>${sessionScope.logon}</b></small></a>
 						</c:if>
 					</div>
 						

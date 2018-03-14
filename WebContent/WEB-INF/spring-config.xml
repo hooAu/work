@@ -41,7 +41,7 @@
 	
 	<!-- webSocket 관리용 Map 등록 -->
 	<bean id="data" class="a.data.WebSession" />
-	<bean id="ws" class="a.data.WebSession" factory-method="createMap" />
+	<bean id="ws" factory-bean="data" factory-method="createMap" />
 	
 	
 	<!-- 서비스 전체 스캔 -->
@@ -50,6 +50,14 @@
 	<!-- websocket 등록 -->
 	<websocket:handlers>
 		<websocket:mapping handler="alertController" path="/alert"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+	
+	<!-- 로그인 한 사람들 관리할 websocket 등록 -->
+	<websocket:handlers>
+		<websocket:mapping handler="logonSocketController" path="/logon"/>
 		<websocket:handshake-interceptors>
 			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
 		</websocket:handshake-interceptors>
