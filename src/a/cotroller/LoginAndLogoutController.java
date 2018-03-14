@@ -51,9 +51,10 @@ public class LoginAndLogoutController {
 			Map data = new HashMap<>();
 				data.put("login", "다른 탭에서 로그인이 되었습니다.\n새로고침 해주세요.");
 			if(list != null) {
-				for(WebSocketSession ws : list) {
+				for(WebSocketSession socket : list) {
 					try {
-						ws.sendMessage(new TextMessage(gson.toJson(data)));
+						
+						socket.sendMessage(new TextMessage(gson.toJson(data)));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}

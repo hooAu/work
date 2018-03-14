@@ -4,7 +4,7 @@
 <%@ include file="top.jsp" %>
 	
 
-
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 		.join{
 			width:200px;
@@ -36,6 +36,10 @@
 		</form>
 	
 	</div>
+	<script>
+		
+	
+	</script>
 
 </body>
 </html>	

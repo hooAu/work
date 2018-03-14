@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.springframework.web.socket.WebSocketSession;
 
+// public class WebSocketMap extends HashMap<String,List<WebSocketSession>>
+// 이런식으로 만들면 factory-method 설정하지 않아도 된다.
 
 public class WebSession {
 	
@@ -14,6 +16,8 @@ public class WebSession {
 		return new HashMap<>();
 	}
 
+	
+	
 	
 	
 	
