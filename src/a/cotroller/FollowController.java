@@ -1,5 +1,6 @@
 package a.cotroller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,13 +64,13 @@ public class FollowController {
 		String me = (String)session.getAttribute("logon");
 		System.out.println(param);
 		
-		Map map = new HashMap<>();
-		for(Object s : param.keySet()) {
-			map.put(s, param.get(s));
+		try {
+			follow.sendResp(param,me);
+			message.sendResponse(me,param);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		follow.sendResp(map,me);
 		
-		message.sendResponse(me,map);
 		
 		return "";
 	}

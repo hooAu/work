@@ -25,7 +25,7 @@
 					
 					
 				<script>
-					var ws = new WebSocket("ws://${pageContext.request.serverName}/logon");
+					var ws = new WebSocket("ws://${pageContext.request.serverName}:5050/logon");
 					// 새로고침한다거나 하면 연결이 끊기면서 새로운 websocket이 생성된다.
 					// 192.168.10.66 대신, ${pageContext.request.serverName} 을 적어도 같은 효과.
 					
@@ -42,7 +42,11 @@
 						var out = "";
 						if(obj.content == "req") {
 							out += "친구신청을 하였습니다.";
-						} 
+						} else if(obj.content == "accept") {
+							out += "친구신청을 수락하였습니다.";
+						} else if(obj.content == "deny") {
+							out += "친구신청을 거절하였습니다.";
+						}
 						var msg = obj.from+"님이 " + out;
 						window.alert(msg);
 					

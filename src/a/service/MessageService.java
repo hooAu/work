@@ -45,8 +45,21 @@ public class MessageService {
 		
 	}
 
-	public void sendResponse(String me, Map<String,Object> map) {
-		
+	public void sendResponse(String me, Map<String,Object> ones) throws IOException {
+		for(String s : ones.keySet()) {
+			if(ws.containsKey(s)) {
+				Map map = new HashMap<>();
+					map.put("from", me);
+					if(String.valueOf(ones.get(s)).equals("accept"))
+						map.put("content", "accept");
+					else 
+						map.put("content", "deny");	
+				for(WebSocketSession socket : ws.get(s)) {
+					socket.sendMessage(new TextMessage(gson.toJson(map)));
+				}
+					
+			}
+		}
 	
 	}
 		

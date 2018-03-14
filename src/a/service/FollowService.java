@@ -37,6 +37,7 @@ public class FollowService {
 	
 	public void sendResp(Map req,String me) {
 		Map map = new HashMap<>();
+		
 		for(Object o : req.keySet()) {
 			map.put("one", String.valueOf(o));
 			String s = String.valueOf(req.get(o));
@@ -46,15 +47,12 @@ public class FollowService {
 				map.put("status", 0);
 			}
 			map.put("other", me);
-		}
-		
-		int size = map.size();
-		while(size >0) {
 			template.update("friend.updateStatus", map);
-			size --;
 		}
-
 	}
+		
+	
+
 	
 		
 		
