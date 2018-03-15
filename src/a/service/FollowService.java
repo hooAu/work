@@ -50,6 +50,11 @@ public class FollowService {
 			template.update("friend.updateStatus", map);
 		}
 	}
+
+	public List<Map> getFollowList(String me) {
+		
+		return template.selectList("friend.getFollowList", me);
+	}
 		
 	
 

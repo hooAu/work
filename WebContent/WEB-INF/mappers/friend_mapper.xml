@@ -12,6 +12,11 @@
 		select * from friend where other=#{other} and status=0
 	</select>
 	
+	<select id="getFollowList" resultType="hashmap">
+		select *from friend where other=#{other} and status&gt;0
+	</select>
+	
+	
 	<update id="updateStatus" parameterType="hashmap">
 		update friend set status=#{status} where one=#{one} and other=#{other}
 	</update>

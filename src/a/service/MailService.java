@@ -6,6 +6,7 @@ import javax.mail.Message.RecipientType;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 public class MailService {
 	@Autowired
 	JavaMailSender mailSender;
+	@Autowired
+	SqlSessionTemplate template;
 	
 	public boolean sendWelcomeMail(String target) {
 		MimeMessage message = mailSender.createMimeMessage();
@@ -43,8 +46,33 @@ public class MailService {
 
 	public String getMail(String id) {
 		
-		return "";
+		return template.selectOne("member.getMail", id);
 	}
+
+	public boolean sendAuthKey(String addr, String authKey) {
+		MimeMessage message = mailSender.createMimeMessage();
+		
+		try {
+			message.setRecipient(RecipientType.TO, new InternetAddress(addr));
+			message.setSubject("[SpringIo] 인증키를 발송해 드립니다.");
+			
+			String content = "인증키 : " + authKey;
+				content += "<br/><a href=\"192.168.10.66/authChk\">인증페이지 가기</a>";
+			message.setContent(content, "text/html;charset=utf-8");
+			
+			mailSender.send(message);
+			return true;
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+		
+		
+
+	
 	
 	
 	

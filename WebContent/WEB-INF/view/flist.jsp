@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>   
 <%@ include file="top.jsp" %>
 
 <style>
@@ -15,7 +16,7 @@
 
 
 		<div style="width:200px; margin-top:70px" >
-				<h4>대기중인 친구신청</h4>
+				<h4>대기중인 친구신청 (${fn:length(req) })</h4>
 				<form action="${pageContext.request.contextPath }/flist" method="post">
 					<c:forEach var="i" items="${req }">
 						<div>

@@ -24,7 +24,9 @@
 			<div>
 				<select  name="target" class="join" >
 					<c:forEach var="i" items="${follow }">
-						<option value="${i.ID }">${i.ID }</option>
+						<c:if test="${i.ID != sessionScope.logon }">
+							<option value="${i.ID }">${i.ID }</option>
+						</c:if>
 					</c:forEach>
 				</select>
 			</div><br/>

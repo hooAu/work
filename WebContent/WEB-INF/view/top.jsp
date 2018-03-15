@@ -31,7 +31,8 @@
 							</c:when>
 							<c:otherwise>
 							 <a href="${pageContext.request.contextPath }/index" class="link"><small><b>홈</b></small></a> 
-							  &nbsp;<a href="${pageContext.request.contextPath }/follow" class="link"><small><b>친구추가</b></small></a>		
+							  &nbsp;<a href="${pageContext.request.contextPath }/follow" class="link"><small><b>친구추가</b></small></a>	  
+							  &nbsp;<a href="${pageContext.request.contextPath }/showfollow" class="link"><small><b>친구목록</b></small></a>	  
 							</c:otherwise>
 						</c:choose>
 					</div>

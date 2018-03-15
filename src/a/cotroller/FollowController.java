@@ -71,10 +71,21 @@ public class FollowController {
 			e.printStackTrace();
 		}
 		
+		List<Map> f = follow.getFollowList(me);
+		model.addAttribute("flist", f);
 		
-		return "";
+		return "showfollow";
 	}
 	
+	
+	@RequestMapping("/showfollow")
+	public String showFollowGetHandle(HttpSession session,Model model) {
+		String me = (String)session.getAttribute("logon");
+		List<Map> f = follow.getFollowList(me);
+		model.addAttribute("flist", f);
+		
+		return "showfollow";
+	}
 	
 	
 	
