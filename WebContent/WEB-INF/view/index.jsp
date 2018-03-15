@@ -25,7 +25,7 @@
 					
 					
 				<script>
-					var ws = new WebSocket("ws://${pageContext.request.serverName}:5050/logon");
+					var ws = new WebSocket("ws://${pageContext.request.serverName}/logon");
 					// 새로고침한다거나 하면 연결이 끊기면서 새로운 websocket이 생성된다.
 					// 192.168.10.66 대신, ${pageContext.request.serverName} 을 적어도 같은 효과.
 					

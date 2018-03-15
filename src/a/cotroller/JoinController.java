@@ -66,8 +66,10 @@ public class JoinController {
 			e.printStackTrace();
 			Map error =	join.errorChk(map);
 			model.addAttribute("error",error);
+			model.addAttribute("main", "join.jsp");
+			// el을 사용한 타일즈 템플릿 사용.
 			
-			return "join";
+			return "t_el";
 		} 
 	}
 				
